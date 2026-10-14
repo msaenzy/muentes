@@ -1,0 +1,94 @@
+/* responsive.css — tablet (≥48em) y modo «lámina de cuaderno» a doble página (≥80em) */
+@media (min-width: 48em) {
+  .site-header__toggle { display: none; }
+  .site-header__menu { display: flex; position: static; flex-direction: row; gap: clamp(1rem, 2.5vw, 2rem); padding: 0; background: none; border: 0; }
+  .site-header__menu a { padding: .25rem 0; border: 0; font-size: .95rem; }
+  .stage { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .fig--hero { grid-column: span 4; }
+  .fig:not(.fig--hero):not(.fig--deco):not(.fig--bg):not(.fig--wall) { grid-column: span 2; }
+  .fig--pol { grid-column: span 2; }
+  .box { grid-column: 1 / -1; }
+  .stage--cover { aspect-ratio: 4 / 3; }
+  .cover__title { font-size: 8vw; } .cover__by { font-size: 3.4vw; }
+  .idx { grid-template-columns: 1fr 1fr; column-gap: 2rem; }
+}
+
+@media (min-width: 80em) {
+  /* Cada .stage es una lámina de 2:1 (doble página). Coordenadas en % tomadas del PDF. */
+  .stage { display: block; position: relative; aspect-ratio: var(--ar, 2); container-type: inline-size; overflow: hidden; padding: 0; max-width: var(--stage-max); margin-inline: auto; }
+  .stage + .stage { border-top: 0; }
+  .spiral--h { display: none; }
+  .spiral--v { display: block; position: absolute; left: 47.96%; top: 0; width: 4.07%; height: 100%; margin: 0; z-index: 3; max-width: none; }
+  .fig, .fig--pol, .box { position: absolute; z-index: var(--z, 1); }
+  .fig { left: calc(var(--x) * 1%); top: calc(var(--y) * 1%); width: calc(var(--w) * 1%); height: calc(var(--h) * 1%); }
+  .fig img { height: 100%; aspect-ratio: auto; }
+  .fig--deco, .fig--bg, .fig--wall { display: block; }
+  .fig--cut img { object-fit: contain; }
+  .fig--hero, .fig:not(.fig--hero):not(.fig--deco):not(.fig--bg):not(.fig--wall), .fig--pol { grid-column: auto; }
+  .fig--ficha img { box-shadow: none; }
+  .fig--pol { left: calc((var(--cx) - var(--w) / 2) * 1%); top: calc(var(--cy) * 1%); width: calc(var(--w) * 1%); height: auto; transform: translateY(-50%) rotate(var(--rot, 0deg)); }
+  .fig--pol img { height: auto; aspect-ratio: var(--pr, 1); }
+  .fig--logo-uda { max-width: none; }
+
+  .box { left: calc(var(--x) * 1%); top: calc(var(--y) * 1%); width: calc(var(--w) * 1%); height: calc(var(--h) * 1%); padding: 1.1cqw 1.3cqw; font-size: clamp(.78rem, calc(var(--ff, .86) * 1cqw), 1.15rem); line-height: 1.5; overflow: hidden; }
+  .box--copy { line-height: 1.36; }
+  .box--panel, .box--tab { font-size: clamp(.74rem, .8cqw, 1.1rem); line-height: 1.42; }
+  .box__title { font-size: calc(var(--fs, 3) * 1cqw); margin-bottom: .4em; }
+  .box--copy { overflow: visible; }
+  .box--copy p { max-width: none; }
+  .box--tesis { --ff: .8; }
+  .box--tesis p { font-size: inherit; margin-inline: 0; }
+  .box--small { --ff: .74; font-size: clamp(.72rem, .74cqw, 1rem); }
+  .box--tab, .box--tabr { display: flex; flex-direction: column; justify-content: center; }
+  .box--tabr { justify-content: center; }
+
+  /* Portada */
+  .stage--cover { aspect-ratio: 2 / 1; }
+  .stage--cover .fig { left: calc(var(--x) * 1%); top: calc(var(--y) * 1%); width: calc(var(--w) * 1%); height: calc(var(--h) * 1%); }
+  .stage--cover .fig img { height: 100%; aspect-ratio: auto; }
+  .box--cover { left: 14.2%; top: 52.4%; width: 60%; padding: 0; overflow: visible; }
+  .cover__title { font-size: 6.23cqw; }
+  .cover__by { font-size: 2.28cqw; }
+  .cover__credit { left: calc(var(--x) * 1%); top: calc(var(--y) * 1%); right: auto; bottom: auto; font-size: .9cqw; text-align: center; }
+
+  /* Índice */
+  .idx__circle { display: block; position: absolute; left: 67%; top: 18.5%; width: 29.4%; height: 58.7%; border-radius: 50%; background: var(--color-primary-soft); z-index: 1; }
+  .box--index { height: 92%; display: flex; flex-direction: column; padding: 0; overflow: visible; }
+  .idx__h { font-size: 2.75cqw; margin: 0 0 1.2cqw; }
+  .idx { display: flex; flex-direction: column; flex: 1; justify-content: space-between; gap: 0; }
+  .idx > li { flex: 1; padding-block: .5cqw; display: flex; }
+  .idx a { width: 100%; align-items: center; gap: 1.2cqw; }
+  .idx__n { width: 2.5cqw; height: 2.5cqw; font-size: clamp(.7rem, 1.05cqw, 1rem); }
+  .idx__n--r { font-size: clamp(.58rem, .78cqw, .8rem); }
+  .idx__t strong { font-size: clamp(.78rem, .84cqw, 1rem); margin: 0; }
+  .idx__t ul { font-size: clamp(.72rem, .72cqw, .95rem); line-height: 1.35; }
+
+  /* Titulación */
+  .box--dark { display: flex; flex-direction: column; justify-content: center; outline-offset: -.9cqw; }
+  .tit__h { font-size: 1.88cqw; margin-bottom: 1.4cqw; }
+  .tit__sub { font-size: .99cqw; }
+  .tit__nua { width: 5cqw; margin-top: .4cqw; }
+  .tit__by { font-size: 1.5cqw; }
+  .ransom, .script { position: absolute; left: calc(var(--x) * 1%); top: calc(var(--y) * 1%); z-index: 6; display: block; grid-column: auto; }
+  .ransom { display: flex; gap: .15cqw; }
+  .ransom span { font-size: 2.4cqw; }
+  .script { font-size: calc(var(--fs, 2.2) * 1cqw); color: #fff; text-shadow: 0 .1cqw .3cqw rgba(0, 0, 0, .5); }
+  .script--dark { color: #3c3333; text-shadow: none; }
+  .fig--collage { }
+
+  /* Saraguro */
+  .saraguro__t { position: absolute; left: calc(var(--x) * 1%); top: calc(var(--y) * 1%); font-size: 5.23cqw; text-align: left; z-index: 6; }
+
+  /* Tecnologías */
+  .cols { font-size: inherit; gap: .6cqw; }
+
+  /* Teatro */
+  .th__wall, .th__floor, .th__panel { display: block; position: absolute; }
+  .th__wall { left: 3.8%; top: 3%; width: 91.5%; height: 82%; background: #9eabc7; z-index: 0; }
+  .th__floor { left: 3.8%; top: 71.4%; width: 91.5%; height: 13.8%; z-index: 0; background: repeating-linear-gradient(180deg, #9a8573 0 .9cqw, #8a7563 .9cqw 1cqw); box-shadow: inset 0 .25cqw .5cqw rgba(0, 0, 0, .25); }
+  .th__panel { left: calc(var(--x) * 1%); top: calc(var(--y) * 1%); width: calc(var(--w) * 1%); height: calc(var(--h) * 1%); z-index: 1; }
+  .th__p1, .th__p3 { background: #0c0c10; } .th__p2, .th__p4 { background: #d6d8e6; }
+  .fig--theatre img { object-fit: cover; }
+}
+
+@media (min-width: 120em) { .stage { box-shadow: 0 0 0 100vmax var(--stage-bg, #fff); clip-path: inset(0 -100vmax); } }

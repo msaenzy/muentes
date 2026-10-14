@@ -1,0 +1,46 @@
+/* variables.css — design tokens de Mapa Musa (portafolio de moda de María Paula Muentes).
+   Fuentes del PDF: CatchyMager, Cinzel Decorative, Lora, Open Sans, TT Chocolates, DO-Script.
+   Sustitutos Google Fonts (ver docs/DESIGN-ANALYSIS.md): Bodoni Moda, Cinzel Decorative, Lora, Open Sans, Caveat. */
+:root {
+  /* Color — paleta del PDF */
+  --color-bg: #ffffff;
+  --color-paper: #e6ebee;          /* papel acuarela de la portada */
+  --color-surface: #f1f1eb;        /* fondo de la lámina de «sintaxis fragmentada» */
+  --color-text: #2b2b2b;
+  --color-primary: #9facc8;        /* periwinkle de portada e índice (solo texto grande/decorativo) */
+  --color-primary-strong: #6f81ab; /* periwinkle con contraste AA para texto pequeño y números */
+  --color-primary-soft: #e2e6ef;
+  --color-dark: #37312d;           /* portada del trabajo de titulación */
+  --color-border: #cfd3dc;
+  --accent-umina: #015b4f; --accent-valdivia: #2ca8b3; --accent-saraguro: #d83d6a; --accent-saraguro-deep: #901d4a;
+
+  --color-secondary: #e6ebee;      /* alias semántico del papel acuarela */
+  --color-accent: #d83d6a;         /* rosa Saraguro, el acento más vivo del PDF */
+
+  /* Tipografía */
+  --font-display: "Bodoni Moda", "Didot", "Playfair Display", Georgia, serif;
+  --font-cinzel: "Cinzel Decorative", "Cinzel", Georgia, serif;
+  --font-serif: "Lora", Georgia, "Times New Roman", serif;
+  --font-body: "Open Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Courier New", Courier, monospace;  /* letras de «recorte» (sintaxis fragmentada) */
+  --font-script: "Caveat", "Segoe Script", cursive;
+
+  /* Espaciado */
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --space-1: .5rem; --space-2: .75rem; --space-3: 1.25rem; --space-4: 2rem; --space-5: 3rem;
+  --header-h: 3.5rem;
+  --stage-max: 120rem;
+
+  --space-xs: .25rem; --space-sm: .5rem; --space-md: 1rem; --space-lg: 2rem; --space-xl: 3rem; --space-2xl: 5rem;
+  --container: 120rem; --grid-columns: 12;
+  --radius-sm: .25rem; --radius-md: .75rem; --radius-lg: 2rem;
+  --shadow-sm: 0 .2rem .5rem rgba(40, 40, 50, .15); --shadow-md: 0 .6rem 1.4rem rgba(40, 40, 50, .22); --shadow-lg: 0 1.2rem 2.4rem rgba(40, 40, 50, .28);
+
+  /* Sombras / radios */
+  --shadow-card: 0 .6rem 1.4rem rgba(40, 40, 50, .22);
+  --shadow-sticker: drop-shadow(0 .4rem .7rem rgba(30, 30, 40, .25));
+
+  /* Movimiento */
+  --dur-reveal: .8s; --dur-nav: .35s; --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --reveal-distance: 24px;
+}

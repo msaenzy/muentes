@@ -1,0 +1,91 @@
+/* components.css — láminas del cuaderno (stage), figuras, polaroids, paneles de texto. Mobile-first. */
+.project { position: relative; background: var(--color-bg); }
+.project + .project { border-top: 1px solid var(--color-border); }
+.stage { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-2); padding: 0 var(--gutter) var(--space-4); background: var(--stage-bg, var(--color-bg)); }
+.stage > * { min-width: 0; }
+.stage + .stage { border-top: 1px dashed var(--color-border); }
+
+/* Espiral de cuaderno */
+.spiral { pointer-events: none; }
+.spiral--h { grid-column: 1 / -1; width: calc(100% + 2 * var(--gutter)); max-width: none; margin: 0 calc(-1 * var(--gutter)) var(--space-1); height: auto; }
+.spiral--v { display: none; }
+
+/* Figuras */
+.fig { margin: 0; position: relative; }
+.fig img { display: block; width: 100%; height: auto; aspect-ratio: var(--r); object-fit: cover; }
+.fig--hero { grid-column: 1 / -1; }
+.fig--deco, .fig--bg { display: none; }
+.fig--cut img, .fig--sticker img { object-fit: contain; filter: var(--shadow-sticker); }
+.fig--swatch img { object-fit: contain; filter: var(--shadow-sticker); }
+.fig--ficha img { background: #fff; box-shadow: var(--shadow-card); }
+.fig--hoop img { border-radius: 50%; }
+.fig--logo-uda { grid-column: 1 / -1; max-width: 16rem; }
+.fig--wall { display: none; }
+
+/* Polaroid (marco CSS) */
+.fig--pol { container-type: inline-size; transform: rotate(calc(var(--rot, 0deg) * .3)); }
+.pol { background: #f5f5f0; padding: 5.5cqw 5.5cqw 17cqw; box-shadow: var(--shadow-card); }
+.pol img { aspect-ratio: var(--pr, 1); object-fit: cover; }
+
+/* Cajas de texto */
+.box { grid-column: 1 / -1; padding: var(--space-3); background: var(--bg, transparent); color: var(--fg, inherit); font-size: 1rem; line-height: 1.6; }
+.box p + p { margin-top: .9em; }
+.box--center { text-align: center; }
+.box__title { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; letter-spacing: .03em; line-height: 1.05; font-size: clamp(2rem, 9vw, 3rem); margin-bottom: .45em; }
+.box__title--c { color: var(--tc, inherit); }
+.box__title--cinzel { font-family: var(--font-cinzel); text-transform: none; color: #000; }
+.box__title span { display: block; font-size: .78em; }
+.box--tab { text-align: center; }
+.box--panel, .box--tab { color: var(--fg, #fff); }
+.box--copy p { max-width: 46rem; margin-inline: auto; }
+.box--tesis p { margin-inline: 0; font-size: .95rem; }
+
+/* Portada */
+.stage--cover { display: block; position: relative; aspect-ratio: 3 / 5; overflow: hidden; background: var(--color-paper); padding: 0; }
+.stage--cover .fig { position: absolute; left: calc(var(--mx, 0) * 1%); top: calc(var(--my, 0) * 1%); width: calc(var(--mw, 30) * 1%); height: auto; z-index: var(--z); }
+.stage--cover .fig img { aspect-ratio: auto; height: auto; }
+.stage--cover .fig--bg { display: block; inset: 0; left: 0; top: 0; width: 100%; height: 100%; }
+.stage--cover .fig--bg img { height: 100%; }
+.stage--cover .fig--deco, .stage--cover .fig--sticker, .stage--cover .fig--logo { display: block; }
+.stage--cover .fig--sticker img { filter: var(--shadow-sticker); }
+.box--cover { position: absolute; left: 6%; top: 49%; width: 90%; padding: 0; z-index: 6; }
+.cover__title { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; letter-spacing: .04em; color: var(--color-primary); font-size: 9.6vw; line-height: 1; }
+.cover__by { font-family: var(--font-serif); color: var(--color-primary-strong); font-size: 5vw; margin-top: .3em; }
+.cover__credit { position: absolute; right: 4%; bottom: 1.2%; z-index: 7; font-family: var(--font-serif); font-size: .7rem; line-height: 1.2; color: #fff; text-align: right; text-shadow: 0 1px 2px rgba(0, 0, 0, .5); }
+
+/* Índice */
+.idx__circle { display: none; }
+.idx__h { font-family: var(--font-serif); font-weight: 400; text-transform: uppercase; font-size: 2.4rem; letter-spacing: .02em; margin-bottom: var(--space-3); }
+.idx { list-style: none; display: grid; gap: .25rem; font-family: var(--font-serif); }
+.idx > li { border-bottom: 1px solid #1f1f1f; padding-block: .8rem; }
+.idx a { display: flex; gap: 1rem; align-items: flex-start; color: var(--color-text); }
+.idx a:hover strong { color: var(--color-primary-strong); }
+.idx__n { flex: none; display: grid; place-items: center; width: 2.9rem; height: 2.9rem; border-radius: 50%; background: var(--color-primary-strong); color: #fff; font-weight: 700; font-size: .95rem; }
+.idx__n--r { font-size: .72rem; letter-spacing: -.02em; white-space: nowrap; }
+.idx__t strong { display: block; font-weight: 700; text-transform: uppercase; font-size: .95rem; letter-spacing: .02em; margin-bottom: .2rem; }
+.idx__t ul { list-style: disc; padding-left: 1.1rem; font-size: .9rem; line-height: 1.45; }
+.box--index { padding-inline: var(--gutter); }
+.stage--index-wrap { }
+
+/* Titulación */
+.box--dark { background: var(--bg); color: #fff; text-align: center; outline: 1px solid rgba(255, 255, 255, .75); outline-offset: -.6rem; padding: 1.6rem 1.4rem; }
+.tit__h { font-family: var(--font-cinzel); font-weight: 400; text-transform: uppercase; font-size: clamp(1.25rem, 5.4vw, 1.9rem); line-height: 1.25; margin-bottom: 1rem; }
+.tit__sub { font-family: var(--font-serif); font-weight: 700; text-transform: uppercase; font-size: .85rem; letter-spacing: .06em; }
+.tit__nua { display: block; width: 5.5rem; height: auto; margin: .5rem auto 0; }
+.tit__by { font-family: var(--font-body); text-transform: uppercase; font-size: clamp(.95rem, 4vw, 1.3rem); letter-spacing: .04em; line-height: 1.5; }
+.ransom, .script { position: static; text-align: center; grid-column: 1 / -1; }
+.ransom { display: flex; justify-content: center; gap: .15rem; margin-top: var(--space-2); }
+.ransom span { display: inline-block; padding: .1em .28em; font-weight: 700; font-size: 1.7rem; background: #151515; color: #f1f1eb; font-family: Georgia, serif; line-height: 1.1; }
+.ransom span:nth-child(3n+1) { background: #f1f1eb; color: #151515; border: 1px solid #151515; font-family: var(--font-mono); }
+.ransom span:nth-child(3n+2) { font-family: var(--font-display); }
+.script { font-family: var(--font-script); font-size: 2.3rem; color: #3c3333; line-height: 1; }
+
+/* Saraguro */
+.saraguro__t { grid-column: 1 / -1; font-family: var(--font-display); font-weight: 400; text-transform: uppercase; color: var(--accent-saraguro); font-size: clamp(2.4rem, 11vw, 3.6rem); text-align: center; letter-spacing: .03em; }
+
+/* Tecnologías */
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; text-align: left; font-size: .95rem; }
+.cols ul { list-style: disc; padding-left: 1.1rem; }
+
+/* Teatro: escenario */
+.th__wall, .th__floor, .th__panel { display: none; }
